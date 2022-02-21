@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "889887833626",
+    "project_id": "restaurant-manager-a806b",
+    "storage_bucket": "restaurant-manager-a806b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889887833626:android:136bd196ec3e1c2d185ba3",
+        "android_client_info": {
+          "package_name": "com.ajvarus.restaurant_manager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "889887833626-4q0cuskfcmms5k9hvms6k7i1lhiv3e94.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaWP2DA7Wjhs-mSiihwxtjYGeQFB3v8zM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "889887833626-4q0cuskfcmms5k9hvms6k7i1lhiv3e94.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
