@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_manager/screens/authenticate/sign_in.dart';
+//import 'package:restaurant_manager/screens/authenticate/sign_in.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:restaurant_manager/screens/authenticate/wrapper/wrapper.dart';
+import 'package:restaurant_manager/services/auth.dart';
+import 'package:provider/provider.dart';
+import 'package:restaurant_manager/models/user.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,11 +27,16 @@ class MyApp extends StatelessWidget {
 
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
-          return const MediaQuery(
-            data: MediaQueryData(),
-            child: MaterialApp(
-              home: SignIn()
-              ),
+          return MediaQuery(
+            data: const MediaQueryData(),
+            child: StreamProvider<User?>.value(
+              initialData: null,
+              value: AuthService().user,
+              child: const MaterialApp(
+                debugShowCheckedModeBanner: false,
+                home: Wrapper()
+                ),
+            ),
           );
         }
 

@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:restaurant_manager/services/auth.dart';
-import 'package:restaurant_manager/models/user.dart';
+import 'package:restaurant_manager/models/user.dart' as UserModel;
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -25,7 +25,7 @@ class _SignInState extends State<SignIn> {
             child: ElevatedButton(
               child: const Text("Sign in"),
               onPressed: () async {
-                User? user = await authService.signInAnonymously();
+                UserModel.User? user = await authService.signInAnonymously();
                 if (user == null) {
                   print("Error signing in");
                 } else {

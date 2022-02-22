@@ -4,8 +4,24 @@ import 'package:restaurant_manager/models/user.dart' as UserModel;
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  UserModel.User createUserModel(User user) {
-    return UserModel.User(uid: user.uid);
+  //Create a user model
+  UserModel.User? createUserModel(User? user) {
+    return user != null ? UserModel.User(uid: user.uid) : null;
+  }
+
+  //Stream for auth state change
+  Stream<UserModel.User?> get user {
+    return _auth.authStateChanges().map(createUserModel);
+  }
+
+  //Sign out anonymous user
+  Future<void> signOut() async {
+    try {
+      await _auth.signOut();
+    } catch (e) {
+      // ignore: avoid_print
+      print(e.toString());
+    }
   }
 
   //Sign in anonymously
