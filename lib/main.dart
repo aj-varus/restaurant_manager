@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 //import 'package:restaurant_manager/screens/authenticate/sign_in.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:restaurant_manager/screens/authenticate/wrapper/wrapper.dart';
+import 'package:restaurant_manager/screens/wrapper/wrapper.dart';
 import 'package:restaurant_manager/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_manager/models/user.dart';
@@ -33,9 +33,7 @@ class MyApp extends StatelessWidget {
               initialData: null,
               value: AuthService().user,
               child: const MaterialApp(
-                debugShowCheckedModeBanner: false,
-                home: Wrapper()
-                ),
+                  debugShowCheckedModeBanner: false, home: Wrapper()),
             ),
           );
         }

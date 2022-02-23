@@ -36,4 +36,32 @@ class AuthService {
       return null;
     }
   }
+
+  //Register user with email and password
+  Future registerWithEmailAndPassword(String email, String password) async {
+    try {
+      UserCredential authResult = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      User user = authResult.user!;
+      return createUserModel(user);
+    } catch (e) {
+      // ignore: avoid_print
+      print(e);
+      return null;
+    }
+  }
+
+  //Sign in user with email and password
+  Future signInWithEmailAndPassword(String email, String password) async {
+    try {
+      UserCredential authResult = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      User user = authResult.user!;
+      return createUserModel(user);
+    } catch (e) {
+      // ignore: avoid_print
+      print(e);
+      return null;
+    }
+  }
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_manager/models/user.dart';
-import 'package:restaurant_manager/screens/authenticate/home/home.dart';
+import 'package:restaurant_manager/screens/home/home.dart';
 import 'package:restaurant_manager/screens/authenticate/sign_in.dart';
+import 'package:restaurant_manager/screens/wrapper/auth_wrapper.dart';
 
 class Wrapper extends StatelessWidget {
   const Wrapper({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class Wrapper extends StatelessWidget {
     if (user != null) {
       return const Home();
     } else {
-      return const SignIn();
+      return const AuthWrapper();
     }
   }
 }
