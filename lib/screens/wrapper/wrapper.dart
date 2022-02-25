@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_manager/models/user.dart';
+import 'package:restaurant_manager/screens/authenticate/passwordless_email_auth.dart';
+import 'package:restaurant_manager/screens/authenticate/phone_auth.dart';
 import 'package:restaurant_manager/screens/home/home.dart';
-import 'package:restaurant_manager/screens/authenticate/sign_in.dart';
 import 'package:restaurant_manager/screens/wrapper/auth_wrapper.dart';
 
 class Wrapper extends StatelessWidget {
@@ -15,7 +16,9 @@ class Wrapper extends StatelessWidget {
     if (user != null) {
       return const Home();
     } else {
-      return const AuthWrapper();
+      //return const AuthWrapper();
+      //return LoginScreen();
+      return LoginPage();
     }
   }
 }

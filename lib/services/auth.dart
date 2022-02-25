@@ -64,4 +64,42 @@ class AuthService {
       return null;
     }
   }
+
+  //Sign in using phone verification
+  void verifyPhoneNumber(String phoneNumber) async {
+    try {
+      await _auth.verifyPhoneNumber(
+          phoneNumber: phoneNumber,
+          //Handle all callbacks
+          verificationCompleted: (PhoneAuthCredential credential) async {
+            await _auth.signInWithCredential(credential).then((value) {
+              print("Log in success using auto verfication");
+            });
+          },
+          verificationFailed: (FirebaseException e) {
+            if (e.code == 'invalid-phone-number') {
+              print('The provided phone number is not valid.');
+            } else {
+              print(
+                  "Could not sign you in. Consider using a different sign in method.");
+            }
+          },
+          codeSent: (String verificationId, int? resendToken) async {
+            // Update the UI - wait for the user to enter the SMS code
+            String smsCode = 'xxxx';
+
+            // Create a PhoneAuthCredential with the code
+            PhoneAuthCredential credential = PhoneAuthProvider.credential(
+                verificationId: verificationId, smsCode: smsCode);
+
+            // Sign the user in (or link) with the credential
+            await _auth.signInWithCredential(credential);
+          },
+          codeAutoRetrievalTimeout: (String verificationId) {
+            print("Auto-retrieval timed out");
+          });
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 }
