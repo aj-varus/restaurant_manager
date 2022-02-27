@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:restaurant_manager/models/user.dart' as UserModel;
+import 'package:restaurant_manager/services/database.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -43,6 +44,9 @@ class AuthService {
       UserCredential authResult = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       User user = authResult.user!;
+
+      await DatabaseService(uid: user.uid).setUserTeaPreference("Makaibari", 0);
+
       return createUserModel(user);
     } catch (e) {
       // ignore: avoid_print
