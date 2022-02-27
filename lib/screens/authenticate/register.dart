@@ -16,6 +16,7 @@ class _RegisterState extends State<Register> {
   String email = "";
   String password = "";
   String error = "";
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +69,10 @@ class _RegisterState extends State<Register> {
                       password = value;
                     },
                   ),
+                  Visibility(
+                    child: const LinearProgressIndicator(),
+                    visible: isLoading,
+                  ),
                   const SizedBox(
                     height: 20.0,
                   ),
@@ -76,10 +81,15 @@ class _RegisterState extends State<Register> {
                       child: const Text("Register"),
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
+                          setState(() {
+                            isLoading = true;
+                          });
+                          await Future.delayed(const Duration(seconds: 2));
                           UserModel.User? user = await authService
                               .registerWithEmailAndPassword(email, password);
                           if (user == null) {
                             setState(() {
+                              isLoading = false;
                               error = "User could not be created";
                             });
                           }
