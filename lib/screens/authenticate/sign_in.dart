@@ -108,9 +108,15 @@ class _SignInState extends State<SignIn> {
                     child: ElevatedButton(
                       child: const Text("Guest user?"),
                       onPressed: () async {
+                        setState(() {
+                          loading = true;
+                        });
                         UserModel.User? user =
                             await authService.signInAnonymously();
                         if (user == null) {
+                          setState(() {
+                            loading = false;
+                          });
                           print("Error signing in");
                         } else {
                           print(user.uid);

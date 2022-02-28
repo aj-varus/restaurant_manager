@@ -9,8 +9,9 @@ class DatabaseService {
   DatabaseService({this.uid = ""});
 
   List<Tea> _teaListFromSnapshot(QuerySnapshot snapshot) {
+    print(snapshot.docs);
     return snapshot.docs.map((doc) {
-      return Tea(name: doc.get("name"), strength: doc.get("strength"));
+      return Tea(name: doc.get("Name"), strength: doc.get("Strength"));
     }).toList();
   }
 
